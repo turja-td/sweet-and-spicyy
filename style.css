@@ -1,0 +1,149 @@
+:root {
+    --blue: #00d2ff;
+    --pink: #ff007f;
+    --dark: #070708;
+    --yellow: #ffeb3b;
+    --glass: rgba(255, 255, 255, 0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--dark);
+    color: white;
+    height: 100vh; width: 100vw;
+    display: flex; justify-content: center; align-items: center;
+    overflow: hidden;
+}
+
+.clash-bg {
+    position: absolute; inset: 0; z-index: -2;
+    background: radial-gradient(circle at center, #1a001a 0%, #000 100%);
+}
+
+.screen {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 20px; text-align: center;
+    transition: 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.hidden { opacity: 0; pointer-events: none; transform: translateY(30px) scale(0.9); }
+.active { opacity: 1; pointer-events: auto; transform: translateY(0) scale(1); }
+
+.cursive-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.6rem, 10vw, 4rem);
+    background: linear-gradient(to right, var(--blue), var(--pink));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; margin-bottom: 10px;
+}
+
+.subtitle { font-size: 0.85rem; color: #bbb; margin-bottom: 25px; font-weight: 300; }
+
+/* TELEPATHY BUTTONS - NEW DESIGN */
+.telepathy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+.tele-btn {
+    width: 70px; height: 70px; border-radius: 15px; border: 2px solid var(--blue);
+    background: rgba(0, 210, 255, 0.1); color: white; font-size: 1.8rem;
+    font-weight: 800; cursor: pointer; transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
+}
+.tele-btn:active { background: var(--blue); transform: scale(0.9); box-shadow: 0 0 20px var(--blue); }
+
+/* RESTART BUTTON - NEW DESIGN */
+.restart-btn {
+    margin-top: 30px; padding: 12px 30px; border-radius: 10px;
+    border: 2px solid var(--pink); background: transparent;
+    color: var(--pink); font-weight: 800; text-transform: uppercase;
+    letter-spacing: 2px; cursor: pointer; transition: 0.3s;
+}
+.restart-btn:hover, .restart-btn:active { background: var(--pink); color: white; box-shadow: 0 0 20px var(--pink); }
+
+/* RESPONSE BOX */
+.response-box {
+    margin-top: 25px; width: 85%; max-width: 320px; min-height: 60px;
+    background: var(--glass); border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    padding: 10px; opacity: 0; transform: translateY(10px); transition: 0.4s;
+    backdrop-filter: blur(8px);
+}
+.response-box.show { opacity: 1; transform: translateY(0); }
+.response-box p { font-size: 0.85rem; color: var(--yellow); font-weight: 600; text-shadow: 0 0 5px black; }
+
+/* EXPLOSION */
+.explosion-msg {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 85%; max-width: 330px; background: #000; z-index: 2000;
+    padding: 30px; border-radius: 20px; border: 4px solid var(--yellow);
+    box-shadow: 0 0 60px var(--yellow);
+}
+
+.glitch { font-size: 1.4rem; color: var(--yellow); font-weight: 900; animation: shake 0.1s infinite; }
+.big-text { font-size: 2.5rem; font-weight: 900; margin: 15px 0; }
+
+/* METER */
+.meter-box { width: 100%; max-width: 350px; background: rgba(0,0,0,0.7); padding: 30px; border-radius: 30px; border: 1px solid var(--glass); }
+.percentage { font-size: 4.8rem; font-weight: 900; color: var(--pink); text-shadow: 0 0 20px var(--pink); }
+.progress-container { width: 100%; height: 20px; background: #111; border-radius: 50px; margin-top: 20px; overflow: hidden; border: 1px solid #333; }
+.progress-bar { width: 0%; height: 100%; background: linear-gradient(90deg, var(--blue), var(--pink)); }
+
+/* TRUTH ORBS */
+.truth-container { display: flex; gap: 12px; margin: 25px 0; }
+.truth-orb {
+    width: 55px; height: 55px; background: linear-gradient(45deg, var(--blue), var(--pink));
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-weight: 800; color: white; cursor: pointer; animation: floatOrb 3s infinite ease-in-out;
+}
+.truth-orb.clicked { background: #333; transform: scale(0.8); animation: none; opacity: 0.4; }
+.truth-message { font-style: italic; color: var(--blue); min-height: 40px; margin-top: 15px; font-weight: 600; }
+
+/* IMAGES & ENVELOPE (Same high-polish) */
+.avatar-container { width: 140px; height: 140px; border-radius: 50%; border: 4px solid var(--pink); position: relative; margin-bottom: 20px; }
+.img-content { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.img-label { position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); background: var(--pink); color: white; padding: 2px 12px; border-radius: 10px; font-size: 0.75rem; font-weight: 800; }
+.evo-container { display: flex; align-items: center; gap: 10px; width: 100%; }
+.evo-box { 
+    flex: 1; 
+    background: rgba(0,0,0,0.5); 
+    padding: 10px; 
+    border-radius: 20px; 
+    border: 1px solid var(--glass); 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 200px;      /* Ensures the boxes stay aligned */
+}
+.img-content-box { 
+    width: 100%; 
+    height: auto;           /* Allows height to grow based on the photo */
+    max-height: 250px;      /* Prevents it from getting too huge on screen */
+    border-radius: 12px; 
+    object-fit: contain;    /* Shows the FULL image without cropping */
+    background-color: rgba(0,0,0,0.3); /* Adds a subtle dark fill for portrait photos */
+    display: block;
+}
+.envelope-wrapper { width: 260px; height: 160px; position: relative; margin: 25px 0; perspective: 1000px; }
+.envelope { width: 100%; height: 100%; background: var(--blue); position: relative; border-radius: 0 0 10px 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.envelope::before { content: ''; position: absolute; top: 0; left: 0; border-left: 130px solid transparent; border-right: 130px solid transparent; border-top: 100px solid #48dbfb; transition: 0.5s; z-index: 5; transform-origin: top; }
+.envelope.open::before { transform: rotateX(180deg); }
+.letter { position: absolute; bottom: 5px; left: 10px; width: 240px; height: 130px; background: white; color: #333; padding: 20px; border-radius: 5px; z-index: 3; transition: 0.6s ease-in-out; overflow: hidden; }
+.envelope.open .letter { transform: translateY(-130px); height: 280px; z-index: 6; overflow-y: auto; pointer-events: auto; }
+.letter-text { font-size: 0.8rem; text-align: left; opacity: 0; transition: 0.4s 0.3s; line-height: 1.4; }
+.envelope.open .letter-text { opacity: 1; }
+.signature { font-family: 'Great Vibes', cursive; color: var(--blue); font-size: 1.5rem; text-align: right; margin-top: 15px; }
+
+/* UTILS */
+.primary-btn { background: linear-gradient(90deg, var(--blue), var(--pink)); border: none; padding: 16px 40px; border-radius: 50px; color: white; font-weight: 800; cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+.quiz-options { width: 100%; max-width: 320px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.quiz-btn { padding: 14px; border-radius: 15px; font-size: 0.7rem; font-weight: bold; color: white; border: 1.5px solid var(--blue); background: rgba(0, 210, 255, 0.05); transition: 0.2s; }
+.quiz-btn.pink { border-color: var(--pink); background: rgba(255, 0, 127, 0.05); }
+.mt-20 { margin-top: 20px; }
+.tap-hint { font-size: 0.75rem; color: var(--yellow); margin-top: 10px; }
+.pulse { animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+@keyframes shake { 0% { transform: translate(2px, 2px); } 50% { transform: translate(-2px, -2px); } }
+@keyframes floatOrb { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+#garden-area { width: 100%; height: 220px; background: rgba(0,0,0,0.5); border-radius: 25px; border: 2px dashed var(--pink); position: relative; overflow: hidden; margin-top: 10px;}
+.music-control { position: fixed; top: 15px; right: 15px; background: rgba(0,0,0,0.6); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 3000; border: 1px solid rgba(255,255,255,0.1); }

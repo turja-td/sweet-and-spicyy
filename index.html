@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Authai: System Overload</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="main-body">
+
+    <div id="particle-container"></div>
+    <div class="clash-bg"></div>
+
+    <div class="music-control" onclick="toggleMusic()">
+        <span id="music-icon">🔇</span>
+        <audio id="bg-music" loop preload="auto">
+            <source src="audio.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <section id="screen-welcome" class="screen active">
+        <div class="avatar-container pulse">
+            <img src="main.jpg" onerror="this.style.display='none'" class="img-content">
+            <div class="img-label">AUTHAI</div>
+        </div>
+        <h1 class="cursive-title">Hey Authai!</h1>
+        <p class="subtitle">Scanning for Bolod Sister Energy...<br>Warning: System instability detected.</p>
+        <button onclick="startJourney()" class="primary-btn pulse">INITIALIZE SCAN ⚡</button>
+    </section>
+
+    <section id="screen-meter" class="screen hidden">
+        <div id="shake-target" class="meter-box">
+            <h2 id="meter-label">SCANNING CUTENESS...</h2>
+            <div class="percentage" id="percentage-display">0%</div>
+            <div class="level-indicator" id="level-text">LEVEL: JUST A SIS</div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-fill"></div>
+            </div>
+            
+            <div id="explosion-text" class="explosion-msg hidden">
+                <div class="glitch">🚨 SYSTEM MELTDOWN 🚨</div>
+                <div class="big-text">TOO MUCH!</div>
+                <div class="sub-text">CRITICAL FAILURE: AUTHAI IS TOO CUTEEE ❤</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="screen-evolution" class="screen hidden">
+        <h1 class="cursive-title">The Evolution</h1>
+        <div class="evo-container">
+            <div class="evo-box">
+                <img src="before.jpg" class="img-content-box">
+                <p>Back Then 👶</p>
+            </div>
+            <div class="evo-divider">⚡</div>
+            <div class="evo-box">
+                <img src="after.jpeg" class="img-content-box">
+                <p>Today ✨</p>
+            </div>
+        </div>
+        <button onclick="showScreen('screen-telepathy')" class="primary-btn mt-20">THE LOYALTY TEST &rarr;</button>
+    </section>
+
+    <section id="screen-telepathy" class="screen hidden">
+        <h1 class="cursive-title">Telepathy Test</h1>
+        <p class="subtitle">I'm thinking of a number... guess it.</p>
+        <div class="telepathy-grid">
+            <button class="tele-btn" onclick="telepathy(1)">1</button>
+            <button class="tele-btn" onclick="telepathy(2)">2</button>
+            <button class="tele-btn" onclick="telepathy(3)">3</button>
+            <button class="tele-btn" onclick="telepathy(4)">4</button>
+        </div>
+        <p id="tele-msg" class="unique-res"></p>
+    </section>
+
+    <section id="quiz-1" class="screen hidden">
+        <h1 class="cursive-title">The Real Roast</h1>
+        <p class="subtitle">If someone tries to mess with me, what's your move?</p>
+        <div class="quiz-options">
+            <button class="quiz-btn blue" onclick="uniqueQuiz('quiz-1', 'Good decision, 100% Support.', 'quiz-2')">Throw a punch</button>
+            <button class="quiz-btn pink" onclick="uniqueQuiz('quiz-1', 'Wow. Tore dekhtesi.', 'quiz-2')">Join & roast me</button>
+            <button class="quiz-btn blue" onclick="uniqueQuiz('quiz-1', 'Record koira ki korbi? Noob.', 'quiz-2')">Record it</button>
+            <button class="quiz-btn pink" onclick="uniqueQuiz('quiz-1', 'YESSSSSS! Gooooood Picchuu!', 'quiz-2')">Defend me</button>
+        </div>
+        <div class="response-box" id="box-quiz-1"><p id="res-quiz-1"></p></div>
+    </section>
+
+    <section id="quiz-2" class="screen hidden">
+        <h1 class="cursive-title">The Favorite?</h1>
+        <p class="subtitle">Who is actually the favorite child?</p>
+        <div class="quiz-options">
+            <button class="quiz-btn pink" onclick="uniqueQuiz('quiz-2', 'Lol, Never. Its me...', 'quiz-3')">Authai (The Moga)</button>
+            <button class="quiz-btn blue" onclick="uniqueQuiz('quiz-2', 'Correct answer picchu.', 'quiz-3')">Turja (The intellectual)</button>
+            <button class="quiz-btn pink" onclick="uniqueQuiz('quiz-2', 'Fair.', 'quiz-3')">None</button>
+            <button class="quiz-btn blue" onclick="uniqueQuiz('quiz-2', 'Yeah, the cat wins.', 'quiz-3')">Buchi</button>
+        </div>
+        <div class="response-box" id="box-quiz-2"><p id="res-quiz-2"></p></div>
+    </section>
+
+    <section id="quiz-3" class="screen hidden">
+        <h1 class="cursive-title">The Final Word</h1>
+        <p class="subtitle">How lucky are you to have me as a brother?</p>
+        <div class="quiz-options">
+            <button class="quiz-btn pink" onclick="uniqueQuiz('quiz-3', '100% correct. You are blessed.', 'screen-hidden-truths')">Luckiest girl alive</button>
+            <button class="quiz-btn blue" onclick="uniqueQuiz('quiz-3', 'Wrong. Try again next year.', 'screen-hidden-truths')">Could be worse</button>
+            <button class="quiz-btn pink" onclick="uniqueQuiz('quiz-3', 'Glad you admit I am the best brother.', 'screen-hidden-truths')">Won the lottery</button>
+            <button class="quiz-btn blue" onclick="uniqueQuiz('quiz-3', 'I am ignoring that. Moving on...', 'screen-hidden-truths')">Bad luck</button>
+        </div>
+        <div class="response-box" id="box-quiz-3"><p id="res-quiz-3"></p></div>
+    </section>
+
+    <section id="screen-hidden-truths" class="screen hidden">
+        <h1 class="cursive-title">Hidden Truths</h1>
+        <p class="subtitle">Tap the 5 orbs to reveal the truth...</p>
+        <div class="truth-container">
+            <div class="truth-orb" onclick="revealTruth(this, 'Cutie pie💕 ')">?</div>
+            <div class="truth-orb" onclick="revealTruth(this, 'You’re smarter than you look. 👀')">?</div>
+            <div class="truth-orb" onclick="revealTruth(this, 'I’ll always defend you.🦴')">?</div>
+            <div class="truth-orb" onclick="revealTruth(this, 'You are slim... 😶')">?</div>
+            <div class="truth-orb" onclick="revealTruth(this, 'Your smile is brighter than the sun 🤞')">?</div>
+        </div>
+        <div id="truth-display" class="truth-message">...</div>
+        <button id="truth-next" class="primary-btn hidden mt-20" onclick="showScreen('screen-garden')">CONTINUE &rarr;</button>
+    </section>
+
+    <section id="screen-garden" class="screen hidden">
+        <h1 class="cursive-title">Our Garden</h1>
+        <div id="garden-area" onclick="plantFlower(event)"></div>
+        <p class="tap-hint pulse">Tap the soil to grow love!</p>
+        <button onclick="showScreen('screen-letter')" class="primary-btn mt-20">THE FINAL NOTE 💌</button>
+    </section>
+
+    <section id="screen-letter" class="screen hidden">
+        <h1 class="cursive-title">For Authai</h1>
+        <p class="tap-hint pulse">Click the letter to open it!</p>
+        <div class="envelope-wrapper" onclick="openEnvelope()">
+            <div id="envelope" class="envelope">
+                <div class="front flap"></div>
+                <div class="front pocket"></div>
+                <div class="letter">
+                    <div class="letter-text">
+                        <p><strong>To my cutie sis Authai,</strong></p>
+                        <p>I know I'm an annoying brother, but that's just because it's my job. Even when we're fighting, I would reshape the world for you.</p>
+                        <p>You've always been more than just family. You're the person I can always roast and the person I'll always protect.</p>
+                        <p>I've always got your back, Authai. Stay the way you are.</p>
+                        <p class="signature">- Your favorite Bro</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button onclick="showScreen('screen-final')" class="primary-btn mt-20">FINISH &rarr;</button>
+    </section>
+
+    <section id="screen-final" class="screen hidden">
+        <h1 class="cursive-title">Love Ya Authai!</h1>
+        <p class="subtitle">System Restored. Developed by Turja.sys</p>
+        <button onclick="restart()" class="restart-btn">RESET SYSTEM ↺</button>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
